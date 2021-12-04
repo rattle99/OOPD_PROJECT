@@ -174,7 +174,7 @@ if __name__ == "__main__":
                             break
 
                         elif button == 5:
-                            flag_wishlist == 1
+                            flag_wishlist = 1
                             res_obj.show_Haldiram()
                             create_table_wishlist()
                             q = order_input_wishlist()
@@ -232,7 +232,7 @@ if __name__ == "__main__":
 
 
                         elif button == 5:
-                            flag_wishlist == 1
+                            flag_wishlist = 1
                             res_obj.show_Bikaner()
                             create_table_wishlist()
                             q = order_input_wishlist()
@@ -288,7 +288,7 @@ if __name__ == "__main__":
 
 
                         elif button == 5:
-                            flag_wishlist == 1
+                            flag_wishlist = 1
                             res_obj.show_Mongini()
                             create_table_wishlist()
                             q = order_input_wishlist()
@@ -346,7 +346,7 @@ if __name__ == "__main__":
 
 
                         elif button == 5:
-                            flag_wishlist == 1
+                            flag_wishlist = 1
                             res_obj.show_Udupi()
                             create_table_wishlist()
                             q = order_input_wishlist()
@@ -400,7 +400,7 @@ if __name__ == "__main__":
                             break
 
                         elif button == 5:
-                            flag_wishlist == 1
+                            flag_wishlist = 1
                             res_obj.show_Om()
                             create_table_wishlist()
 
