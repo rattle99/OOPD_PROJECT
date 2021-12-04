@@ -1,19 +1,18 @@
-import sqlite3
-import pandas as pd
 from geopy.distance import great_circle
 import Restaurent
 import User
-from Wishlist import *
-from Order import *
-from Payment import *
-from Tracking import *
-from tabulate import tabulate
+import Payment
+import Wishlist
+import Order
+import Tracking
+
 
 if __name__ == "__main__":
     while True:
         print("WELCOME TO THE APPLICATION:")
         print("FOR REGISTRATION PRESS 1:")
         print("FOR LOGIN PRESS 2:")
+        count = 1
         flag = 0
         flag_1 = 0
         flag_wishlist = 0
@@ -45,13 +44,24 @@ if __name__ == "__main__":
         elif x == 2:
             # Use of Inheritance
             obj2 = User.Promocode()
+            
             print("----------------------------")
             print("Welcome to the LOGIN PORTAL:")
             print("----------------------------")
             email = input("Enter your EMAIL-ID: ")
             password = input("Enter your PASSWORD: ")
             if obj2.User_Authentciation(email, password):
+                # Object of Payment Class
+                pay_obj = Payment.Payment()
+                # Object of Restaurant Class
                 res_obj = Restaurent.Restaurant()
+                # Object of Order Class
+                order_obj = Order.Order()
+                # Object of Wishlist Class
+                wish_obj = Wishlist.Wishlist()
+                # Object of Track_Order Class
+                track_obj = Tracking.Track_Order()
+
                 user_lat_lon = obj2.lat_lon_user(email)
                 print("Select the Restaurant of your choice:")
                 res_obj.show_all()
@@ -73,49 +83,49 @@ if __name__ == "__main__":
 
                 if res_name == "KOLKATA KATHI ROLLS":
                     res_obj.show_kolkata()
-                    create_table()
-                    x, y = order_input()
-                    order_summary(x, y, fetch_kolkata)
-                    time_avg, bill = avg_time_bill()
+                    order_obj.create_table()
+                    x, y = order_obj.order_input()
+                    order_obj.order_summary(x, y, order_obj.fetch_kolkata)
+                    time_avg, bill = order_obj.avg_time_bill()
                     print("Your ORDER:")
-                    show_order()
+                    order_obj.show_order()
                     while True:
-                        Enter()
+                        order_obj.Enter()
                         button = int(input())
                         if button == 1:
                             x = int(input("Enter the INDEX of ITEM you want to remove:"))
-                            delete_item(x)
+                            order_obj.delete_item(x)
                             print("Your ORDER:")
-                            show_order()
-                            time_avg, bill = avg_time_bill()
+                            order_obj.show_order()
+                            time_avg, bill = order_obj.avg_time_bill()
 
                         elif button == 2:
                             res_obj.show_kolkata()
-                            x, y = order_input()
-                            order_summary(x, y, fetch_kolkata)
+                            x, y = order_obj.order_input()
+                            order_obj.order_summary(x, y, order_obj.fetch_kolkata)
                             print("Your ORDER:")
-                            show_order()
-                            time_avg, bill = avg_time_bill()
+                            order_obj.show_order()
+                            time_avg, bill = order_obj.avg_time_bill()
 
 
                         elif button == 3:
-                            time_avg, bill = avg_time_bill()
+                            time_avg, bill = order_obj.avg_time_bill()
                             if bill < 100:
                                 print("----------------------------")
                                 print("The Minimum Cart Value should not be less than 100 rupees!!")
                                 print("Please add more items:")
                                 print("----------------------------")
                             else:
-                                drop_table()
-                                payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
-                                promo1, promo2, flag_1 = Payment(delivery_charge, bill, email, obj2)
-                                Tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
+                                order_obj.drop_table()
+                                pay_obj.payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
+                                promo1, promo2, flag_1 = pay_obj.payment_final(delivery_charge, bill, email, obj2)
+                                track_obj.tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
                                 break
 
 
                         elif button == 4:
                             flag = 1
-                            drop_table()
+                            order_obj.drop_table()
                             print("Discarding the Order")
                             break
 
@@ -123,42 +133,44 @@ if __name__ == "__main__":
                         elif button == 5:
                             flag_wishlist = 1
                             res_obj.show_kolkata()
-                            create_table_wishlist()
-                            q = order_input_wishlist()
-                            Wishlist_summary(q, fetch_kolkata)
+                            if count == 1:
+                                wish_obj.create_table_wishlist()
+                            q = wish_obj.order_input_wishlist()
+                            wish_obj.Wishlist_summary(q, order_obj.fetch_kolkata)
                             print("Your Wishlist:")
-                            show_wishlist()
+                            wish_obj.show_wishlist()
+                            count = count + 1
 
 
                 elif res_name == "HALDIRAMS":
                     res_obj.show_Haldiram()
-                    create_table()
-                    x, y = order_input()
-                    order_summary(x, y, fetch_Haldiram)
-                    time_avg, bill = avg_time_bill()
+                    order_obj.create_table()
+                    x, y = order_obj.order_input()
+                    order_obj.order_summary(x, y, order_obj.fetch_Haldiram)
+                    time_avg, bill = order_obj.avg_time_bill()
                     print("Your ORDER:")
-                    show_order()
+                    order_obj.show_order()
                     while True:
-                        Enter()
+                        order_obj.Enter()
                         button = int(input())
                         if button == 1:
                             x = int(input("Enter the INDEX of ITEM you want to remove:"))
-                            delete_item(x)
+                            order_obj.delete_item(x)
                             print("Your ORDER:")
-                            show_order()
-                            time_avg, bill = avg_time_bill()
+                            order_obj.show_order()
+                            time_avg, bill = order_obj.avg_time_bill()
 
                         elif button == 2:
                             res_obj.show_Haldiram()
-                            x, y = order_input()
-                            order_summary(x, y, fetch_Haldiram)
+                            x, y = order_obj.order_input()
+                            order_obj.order_summary(x, y, order_obj.fetch_Haldiram)
                             print("Your ORDER:")
-                            show_order()
-                            time_avg, bill = avg_time_bill()
+                            order_obj.show_order()
+                            time_avg, bill = order_obj.avg_time_bill()
 
 
                         elif button == 3:
-                            time_avg, bill = avg_time_bill()
+                            time_avg, bill = order_obj.avg_time_bill()
                             if bill < 100:
                                 print("----------------------------")
                                 print("The Minimum Cart Value should not be less than 100 rupees!!")
@@ -166,58 +178,60 @@ if __name__ == "__main__":
                                 print("----------------------------")
                             else:
 
-                                drop_table()
-                                payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
-                                promo1, promo2, flag_1 = Payment(delivery_charge, bill, email, obj2)
-                                Tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
+                                order_obj.drop_table()
+                                pay_obj.payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
+                                promo1, promo2, flag_1 = pay_obj.payment_final(delivery_charge, bill, email, obj2)
+                                track_obj.tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
 
                                 break
 
                         elif button == 4:
                             flag = 1
-                            drop_table()
+                            order_obj.drop_table()
                             print("Discarding the Order")
                             break
 
                         elif button == 5:
                             flag_wishlist = 1
                             res_obj.show_Haldiram()
-                            create_table_wishlist()
-                            q = order_input_wishlist()
-                            Wishlist_summary(q, fetch_Haldiram)
+                            if count == 1:
+                                wish_obj.create_table_wishlist()
+                            q = wish_obj.order_input_wishlist()
+                            wish_obj.Wishlist_summary(q, order_obj.fetch_Haldiram)
                             print("Your Wishlist:")
-                            show_wishlist()
+                            wish_obj.show_wishlist()
+                            count = count + 1
 
 
                 elif res_name == "BIKANERWALA":
                     res_obj.show_Bikaner()
-                    create_table()
-                    x, y = order_input()
-                    order_summary(x, y, fetch_Bikaner)
-                    time_avg, bill = avg_time_bill()
+                    order_obj.create_table()
+                    x, y = order_obj.order_input()
+                    order_obj.order_summary(x, y, order_obj.fetch_Bikaner)
+                    time_avg, bill = order_obj.avg_time_bill()
                     print("Your ORDER:")
-                    show_order()
+                    order_obj.show_order()
                     while True:
-                        Enter()
+                        order_obj.Enter()
                         button = int(input())
                         if button == 1:
                             x = int(input("Enter the INDEX of ITEM you want to remove:"))
-                            delete_item(x)
+                            order_obj.delete_item(x)
                             print("Your ORDER:")
-                            show_order()
-                            time_avg, bill = avg_time_bill()
+                            order_obj.show_order()
+                            time_avg, bill = order_obj.avg_time_bill()
 
                         elif button == 2:
                             res_obj.show_Bikaner()
-                            x, y = order_input()
-                            order_summary(x, y, fetch_Bikaner)
+                            x, y = order_obj.order_input()
+                            order_obj.order_summary(x, y, order_obj.fetch_Bikaner)
                             print("Your ORDER:")
-                            show_order()
-                            time_avg, bill = avg_time_bill()
+                            order_obj.show_order()
+                            time_avg, bill = order_obj.avg_time_bill()
 
 
                         elif button == 3:
-                            time_avg, bill = avg_time_bill()
+                            time_avg, bill = order_obj.avg_time_bill()
                             if bill < 100:
                                 print("----------------------------")
                                 print("The Minimum Cart Value should not be less than 100 rupees!!")
@@ -225,16 +239,16 @@ if __name__ == "__main__":
                                 print("----------------------------")
                             else:
 
-                                drop_table()
-                                payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
-                                promo1, promo2, flag_1 = Payment(delivery_charge, bill, email, obj2)
-                                Tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
+                                order_obj.drop_table()
+                                pay_obj.payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
+                                promo1, promo2, flag_1 = pay_obj.payment_final(delivery_charge, bill, email, obj2)
+                                track_obj.tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
                                 break
 
 
                         elif button == 4:
                             flag = 1
-                            drop_table()
+                            order_obj.drop_table()
                             print("Discarding the Order")
                             break
 
@@ -243,41 +257,43 @@ if __name__ == "__main__":
                         elif button == 5:
                             flag_wishlist = 1
                             res_obj.show_Bikaner()
-                            create_table_wishlist()
-                            q = order_input_wishlist()
-                            Wishlist_summary(q, fetch_Bikaner)
+                            if count == 1:
+                                wish_obj.create_table_wishlist()
+                            q = wish_obj.order_input_wishlist()
+                            wish_obj.Wishlist_summary(q, order_obj.fetch_Bikaner)
                             print("Your Wishlist:")
-                            show_wishlist()
+                            wish_obj.show_wishlist()
+                            count = count + 1
 
                 elif res_name == "MONGINI-BAKERY":
                     res_obj.show_Mongini()
-                    create_table()
-                    x, y = order_input()
-                    order_summary(x, y, fetch_Mongini)
-                    time_avg, bill = avg_time_bill()
+                    order_obj.create_table()
+                    x, y = order_obj.order_input()
+                    order_obj.order_summary(x, y, order_obj.fetch_Mongini)
+                    time_avg, bill = order_obj.avg_time_bill()
                     print("Your ORDER:")
-                    show_order()
+                    order_obj.show_order()
                     while True:
-                        Enter()
+                        order_obj.Enter()
                         button = int(input())
                         if button == 1:
                             x = int(input("Enter the INDEX of ITEM you want to remove:"))
-                            delete_item(x)
+                            order_obj.delete_item(x)
                             print("Your ORDER:")
-                            show_order()
-                            time_avg, bill = avg_time_bill()
+                            order_obj.show_order()
+                            time_avg, bill = order_obj.avg_time_bill()
 
                         elif button == 2:
                             res_obj.show_Mongini()
-                            x, y = order_input()
-                            order_summary(x, y, fetch_Mongini)
+                            x, y = order_obj.order_input()
+                            order_obj.order_summary(x, y, order_obj.fetch_Mongini)
                             print("Your ORDER:")
-                            show_order()
-                            time_avg, bill = avg_time_bill()
+                            order_obj.show_order()
+                            time_avg, bill = order_obj.avg_time_bill()
 
 
                         elif button == 3:
-                            time_avg, bill = avg_time_bill()
+                            time_avg, bill = order_obj.avg_time_bill()
                             if bill < 100:
                                 print("----------------------------")
                                 print("The Minimum Cart Value should not be less than 100 rupees!!")
@@ -285,16 +301,16 @@ if __name__ == "__main__":
                                 print("----------------------------")
                             else:
 
-                                drop_table()
-                                payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
-                                promo1, promo2, flag_1 = Payment(delivery_charge, bill, email, obj2)
-                                Tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
+                                order_obj.drop_table()
+                                pay_obj.payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
+                                promo1, promo2, flag_1 = pay_obj.payment_final(delivery_charge, bill, email, obj2)
+                                track_obj.tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
                                 break
 
 
                         elif button == 4:
                             flag = 1
-                            drop_table()
+                            order_obj.drop_table()
                             print("Discarding the Order")
                             break
 
@@ -302,43 +318,45 @@ if __name__ == "__main__":
                         elif button == 5:
                             flag_wishlist = 1
                             res_obj.show_Mongini()
-                            create_table_wishlist()
-                            q = order_input_wishlist()
-                            Wishlist_summary(q, fetch_Mongini)
+                            if count == 1:
+                                wish_obj.create_table_wishlist()
+                            q = wish_obj.order_input_wishlist()
+                            wish_obj.Wishlist_summary(q, order_obj.fetch_Mongini)
                             print("Your Wishlist:")
-                            show_wishlist()
+                            wish_obj.show_wishlist()
+                            count = count + 1
 
 
 
                 elif res_name == "UDUPI":
                     res_obj.show_Udupi()
-                    create_table()
-                    x, y = order_input()
-                    order_summary(x, y, fetch_Udupi)
-                    time_avg, bill = avg_time_bill()
+                    order_obj.create_table()
+                    x, y = order_obj.order_input()
+                    order_obj.order_summary(x, y, order_obj.fetch_Udupi)
+                    time_avg, bill = order_obj.avg_time_bill()
                     print("Your ORDER:")
-                    show_order()
+                    order_obj.show_order()
                     while True:
-                        Enter()
+                        order_obj.Enter()
                         button = int(input())
                         if button == 1:
                             x = int(input("Enter the INDEX of ITEM you want to remove:"))
-                            delete_item(x)
+                            order_obj.delete_item(x)
                             print("Your ORDER:")
-                            show_order()
-                            time_avg, bill = avg_time_bill()
+                            order_obj.show_order()
+                            time_avg, bill = order_obj.avg_time_bill()
 
                         elif button == 2:
                             res_obj.show_Udupi()
-                            x, y = order_input()
-                            order_summary(x, y, fetch_Udupi)
+                            x, y = order_obj.order_input()
+                            order_obj.order_summary(x, y, order_obj.fetch_Udupi)
                             print("Your ORDER:")
-                            show_order()
-                            time_avg, bill = avg_time_bill()
+                            order_obj.show_order()
+                            time_avg, bill = order_obj.avg_time_bill()
 
 
                         elif button == 3:
-                            time_avg, bill = avg_time_bill()
+                            time_avg, bill = order_obj.avg_time_bill()
                             if bill < 100:
                                 print("----------------------------")
                                 print("The Minimum Cart Value should not be less than 100 rupees!!")
@@ -346,16 +364,16 @@ if __name__ == "__main__":
                                 print("----------------------------")
                             else:
 
-                                drop_table()
-                                payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
-                                promo1, promo2, flag_1 = Payment(delivery_charge, bill, email, obj2)
-                                Tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
+                                order_obj.drop_table()
+                                pay_obj.payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
+                                promo1, promo2, flag_1 = pay_obj.payment_final(delivery_charge, bill, email, obj2)
+                                track_obj.tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
                                 break
 
 
                         elif button == 4:
                             flag = 1
-                            drop_table()
+                            order_obj.drop_table()
                             print("Discarding the Order")
                             break
 
@@ -363,73 +381,77 @@ if __name__ == "__main__":
                         elif button == 5:
                             flag_wishlist = 1
                             res_obj.show_Udupi()
-                            create_table_wishlist()
-                            q = order_input_wishlist()
-                            Wishlist_summary(q, fetch_Udupi)
+                            if count == 1:
+                                wish_obj.create_table_wishlist()
+                            q = wish_obj.order_input_wishlist()
+                            wish_obj.Wishlist_summary(q, order_obj.fetch_Udupi)
                             print("Your Wishlist:")
-                            show_wishlist()
+                            wish_obj.show_wishlist()
+                            count = count + 1
 
                 elif res_name == "OM-SWEETS":
 
                     res_obj.show_Om()
-                    create_table()
-                    x, y = order_input()
-                    order_summary(x, y, fetch_Om)
-                    time_avg, bill = avg_time_bill()
+                    order_obj.create_table()
+                    x, y = order_obj.order_input()
+                    order_obj.order_summary(x, y, order_obj.fetch_Om)
+                    time_avg, bill = order_obj.avg_time_bill()
                     print("Your ORDER:")
-                    show_order()
+                    order_obj.show_order()
                     while True:
-                        Enter()
+                        order_obj.Enter()
                         button = int(input())
                         if button == 1:
                             x = int(input("Enter the INDEX of ITEM you want to remove:"))
-                            delete_item(x)
+                            order_obj.delete_item(x)
                             print("Your ORDER:")
-                            show_order()
-                            time_avg, bill = avg_time_bill()
+                            order_obj.show_order()
+                            time_avg, bill = order_obj.avg_time_bill()
 
                         elif button == 2:
                             res_obj.show_Om()
-                            x, y = order_input()
-                            order_summary(x, y, fetch_Om)
+                            x, y = order_obj.order_input()
+                            order_obj.order_summary(x, y, order_obj.fetch_Om)
                             print("Your ORDER:")
-                            show_order()
-                            time_avg, bill = avg_time_bill()
+                            order_obj.show_order()
+                            time_avg, bill = order_obj.avg_time_bill()
 
 
                         elif button == 3:
-                            time_avg, bill = avg_time_bill()
+                            time_avg, bill = order_obj.avg_time_bill()
                             if bill < 100:
                                 print("----------------------------")
                                 print("The Minimum Cart Value should not be less than 100 rupees!!")
                                 print("Please add more items:")
                                 print("----------------------------")
                             else:
-                                drop_table()
-                                payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
-                                promo1, promo2, flag_1 = Payment(delivery_charge, bill, email, obj2)
-                                Tracking(time_avg, delivery_time, promo1, promo2, email,obj2)
+                                order_obj.drop_table()
+                                pay_obj.payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
+                                promo1, promo2, flag_1 = pay_obj.payment_final(delivery_charge, bill, email, obj2)
+                                track_obj.tracking(time_avg, delivery_time, promo1, promo2, email,obj2)
                                 break
 
                         elif button == 4:
                             flag = 1
-                            drop_table()
+                            order_obj.drop_table()
                             print("Discarding the Order")
                             break
 
                         elif button == 5:
                             flag_wishlist = 1
                             res_obj.show_Om()
-                            create_table_wishlist()
+                            if count == 1:
+                                wish_obj.create_table_wishlist()
 
-                            q = order_input_wishlist()
-                            Wishlist_summary(q, fetch_Om)
+                            q = wish_obj.order_input_wishlist()
+                            wish_obj.Wishlist_summary(q, order_obj.fetch_Om)
                             print("Your Wishlist:")
-                            show_wishlist()
+                            wish_obj.show_wishlist()
+                            count = count + 1
 
                 if flag == 1 or flag_1 == 1:
                     if flag_wishlist == 1:
-                        drop_table_wishlist()
+                        wish_obj.drop_table_wishlist()
                     print("----------------------------")
                     print("Thanks For using the APP!!")
                     print("----------------------------")
