@@ -119,6 +119,7 @@ if __name__ == "__main__":
 
                         elif button == 5:
                             flag_wishlist = 1
+                            res_obj.show_kolkata()
                             create_table_wishlist()
                             q = order_input_wishlist()
                             Wishlist_summary(q, fetch_kolkata)
@@ -174,6 +175,7 @@ if __name__ == "__main__":
 
                         elif button == 5:
                             flag_wishlist == 1
+                            res_obj.show_Haldiram()
                             create_table_wishlist()
                             q = order_input_wishlist()
                             Wishlist_summary(q, fetch_Haldiram)
@@ -231,6 +233,7 @@ if __name__ == "__main__":
 
                         elif button == 5:
                             flag_wishlist == 1
+                            res_obj.show_Bikaner()
                             create_table_wishlist()
                             q = order_input_wishlist()
                             Wishlist_summary(q, fetch_Bikaner)
@@ -286,6 +289,7 @@ if __name__ == "__main__":
 
                         elif button == 5:
                             flag_wishlist == 1
+                            res_obj.show_Mongini()
                             create_table_wishlist()
                             q = order_input_wishlist()
                             Wishlist_summary(q, fetch_Mongini)
@@ -343,6 +347,7 @@ if __name__ == "__main__":
 
                         elif button == 5:
                             flag_wishlist == 1
+                            res_obj.show_Udupi()
                             create_table_wishlist()
                             q = order_input_wishlist()
                             Wishlist_summary(q, fetch_Udupi)
@@ -396,7 +401,9 @@ if __name__ == "__main__":
 
                         elif button == 5:
                             flag_wishlist == 1
+                            res_obj.show_Om()
                             create_table_wishlist()
+
                             q = order_input_wishlist()
                             Wishlist_summary(q, fetch_Om)
                             print("Your Wishlist:")
