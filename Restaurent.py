@@ -1,5 +1,6 @@
 import sqlite3
 import pandas as pd
+from tabulate import tabulate
 
 
 class Restaurant:
@@ -10,21 +11,24 @@ class Restaurant:
     def show_all(self):
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
-
+        head = ['INDEX', 'RESTAURANT', 'LATITUDE', 'LONGITUDE']
+        idx = list()
+        rest = list()
+        lati = list()
+        longi = list()
         c.execute("SELECT rowid, * FROM Restaurent")
         items = c.fetchall()
-        print("INDEX" + "\t\t" + "RESTAURANT" + "\t\t" + "LATITUDE" + "\t" + "LONGITUDE")
-        print("_________________________________________________________________")
-        for i, j, k, l in items:
-            if j == "KOLKATA KATHI ROLLS":
-                print(str(i) + "\t\t" + j + "\t" + str(k) + "\t\t" + str(l))
-            elif j == "UDUPI":
-                print(str(i) + "\t\t" + j + "\t\t\t\t" + str(k) + "\t\t" + str(l))
-            elif j == "MONGINI-BAKERY":
-                print(str(i) + "\t\t" + j + "\t\t" + str(k) + "\t\t" + str(l))
 
-            else:
-                print(str(i) + "\t\t" + j + "\t\t\t" + str(k) + "\t\t" + str(l))
+        for i, j, k, l in items:
+            idx.append(i)
+            rest.append(j)
+            lati.append(k)
+            longi.append(l)
+
+        table_data = list(zip(idx, rest, lati, longi))
+        table = tabulate(headers=head, tabular_data=table_data, tablefmt="github")
+        print(table)
+
 
         conn.commit()
         conn.close()
@@ -44,13 +48,22 @@ class Restaurant:
 
         c.execute("SELECT rowid, * FROM kolkata")
         items = c.fetchall()
-        print("INDEX" + "\t\t" + "MENU" + "\t\t\t" + "PRICE" + "\t" + "PREPARATION TIME")
-        print("_________________________________________________________________")
+        head = ['INDEX', 'MENU', 'PRICE', 'PREPARATION TIME']
+        idx = list()
+        menu = list()
+        price = list()
+        ti = list()
+
         for i, j, k, l in items:
-            if j == "Veg Roll" or j == "Paneer Roll" or j == "Malai Chaap" or j == "Fried Rice":
-                print(str(i) + "\t\t" + j + "\t\t\t" + str(k) + "\t\t" + str(l))
-            else:
-                print(str(i) + "\t\t" + j + "\t\t" + str(k) + "\t\t" + str(l))
+            idx.append(i)
+            menu.append(j)
+            price.append(k)
+            ti.append(l)
+
+        table_data = list(zip(idx, menu, price, ti))
+        table = tabulate(headers=head, tabular_data=table_data, tablefmt="rst")
+        print(table)
+
 
         conn.commit()
         conn.close()
@@ -61,18 +74,21 @@ class Restaurant:
 
         c.execute("SELECT rowid, * FROM Haldiram")
         items = c.fetchall()
-        print("INDEX" + "\t\t" + "MENU" + "\t\t\t" + "PRICE" + "\t" + "PREPARATION TIME")
-        print("_________________________________________________________________")
-        for i, j, k, l in items:
-            if j == "Noodles":
-                print(str(i) + "\t\t" + j + "\t\t\t\t" + str(k) + "\t\t" + str(l))
-            elif j == "Raj Kachori" or j == "Pao Bhaaji":
-                print(str(i) + "\t\t" + j + "\t\t\t" + str(k) + "\t\t" + str(l))
-            elif j == "Executive Thaali":
-                print(str(i) + "\t\t" + j + "\t" + str(k) + "\t\t" + str(l))
-            else:
-                print(str(i) + "\t\t" + j + "\t\t" + str(k) + "\t\t" + str(l))
+        head = ['INDEX', 'MENU', 'PRICE', 'PREPARATION TIME']
+        idx = list()
+        menu = list()
+        price = list()
+        ti = list()
 
+        for i, j, k, l in items:
+            idx.append(i)
+            menu.append(j)
+            price.append(k)
+            ti.append(l)
+
+        table_data = list(zip(idx, menu, price, ti))
+        table = tabulate(headers=head, tabular_data=table_data, tablefmt="rst")
+        print(table)
         conn.commit()
         conn.close()
 
@@ -82,16 +98,21 @@ class Restaurant:
 
         c.execute("SELECT rowid, * FROM Bikaner")
         items = c.fetchall()
-        print("INDEX" + "\t\t" + "MENU" + "\t\t\t" + "PRICE" + "\t" + "PREPARATION TIME")
-        print("_________________________________________________________________")
-        for i, j, k, l in items:
-            if j == "Executive Thaali":
-                print(str(i) + "\t\t" + j + "\t" + str(k) + "\t\t" + str(l))
-            elif j == "Raaj Bhog" or j == "Raj Kachori" or j == "Papdi Chaat":
-                print(str(i) + "\t\t" + j + "\t\t\t" + str(k) + "\t\t" + str(l))
+        head = ['INDEX', 'MENU', 'PRICE', 'PREPARATION TIME']
+        idx = list()
+        menu = list()
+        price = list()
+        ti = list()
 
-            else:
-                print(str(i) + "\t\t" + j + "\t\t" + str(k) + "\t\t" + str(l))
+        for i, j, k, l in items:
+            idx.append(i)
+            menu.append(j)
+            price.append(k)
+            ti.append(l)
+
+        table_data = list(zip(idx, menu, price, ti))
+        table = tabulate(headers=head, tabular_data=table_data, tablefmt="rst")
+        print(table)
 
         conn.commit()
         conn.close()
@@ -102,13 +123,21 @@ class Restaurant:
 
         c.execute("SELECT rowid, * FROM Mongini")
         items = c.fetchall()
-        print("INDEX" + "\t\t" + "MENU" + "\t\t\t" + "PRICE" + "\t" + "PREPARATION TIME")
-        print("_________________________________________________________________")
+        head = ['INDEX', 'MENU', 'PRICE', 'PREPARATION TIME']
+        idx = list()
+        menu = list()
+        price = list()
+        ti = list()
+
         for i, j, k, l in items:
-            if j == "Choco Truffle" or j == "Buttorscotch" or j == "Paneer Pateez":
-                print(str(i) + "\t\t" + j + "\t\t" + str(k) + "\t\t" + str(l))
-            else:
-                print(str(i) + "\t\t" + j + "\t\t\t" + str(k) + "\t\t" + str(l))
+            idx.append(i)
+            menu.append(j)
+            price.append(k)
+            ti.append(l)
+
+        table_data = list(zip(idx, menu, price, ti))
+        table = tabulate(headers=head, tabular_data=table_data, tablefmt="rst")
+        print(table)
         conn.commit()
         conn.close()
 
@@ -118,15 +147,21 @@ class Restaurant:
 
         c.execute("SELECT rowid, * FROM Udupi")
         items = c.fetchall()
-        print("INDEX" + "\t\t" + "MENU" + "\t\t\t" + "PRICE" + "\t" + "PREPARATION TIME")
-        print("_________________________________________________________________")
+        head = ['INDEX', 'MENU', 'PRICE', 'PREPARATION TIME']
+        idx = list()
+        menu = list()
+        price = list()
+        ti = list()
+
         for i, j, k, l in items:
-            if j == "Sambhar Wada":
-                print(str(i) + "\t\t" + j + "\t\t" + str(k) + "\t\t" + str(l))
-            elif j == "Utappam" or j == "Appam":
-                print(str(i) + "\t\t" + j + "\t\t\t\t" + str(k) + "\t\t" + str(l))
-            else:
-                print(str(i) + "\t\t" + j + "\t\t\t" + str(k) + "\t\t" + str(l))
+            idx.append(i)
+            menu.append(j)
+            price.append(k)
+            ti.append(l)
+
+        table_data = list(zip(idx, menu, price, ti))
+        table = tabulate(headers=head, tabular_data=table_data, tablefmt="rst")
+        print(table)
 
         conn.commit()
         conn.close()
@@ -137,13 +172,21 @@ class Restaurant:
 
         c.execute("SELECT rowid, * FROM Om")
         items = c.fetchall()
-        print("INDEX" + "\t\t" + "MENU" + "\t\t\t" + "PRICE" + "\t" + "PREPARATION TIME")
-        print("_________________________________________________________________")
+        head = ['INDEX', 'MENU', 'PRICE', 'PREPARATION TIME']
+        idx = list()
+        menu = list()
+        price = list()
+        ti = list()
+
         for i, j, k, l in items:
-            if j == "Raaj Bhog" or j == "Raaj Thaali" or j == "Pao Bhaji":
-                print(str(i) + "\t\t" + j + "\t\t\t" + str(k) + "\t\t" + str(l))
-            else:
-                print(str(i) + "\t\t" + j + "\t\t" + str(k) + "\t\t" + str(l))
+            idx.append(i)
+            menu.append(j)
+            price.append(k)
+            ti.append(l)
+
+        table_data = list(zip(idx, menu, price, ti))
+        table = tabulate(headers=head, tabular_data=table_data, tablefmt="rst")
+        print(table)
 
         conn.commit()
         conn.close()
