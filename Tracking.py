@@ -20,9 +20,9 @@ def Tracking(time_avg, delivery_time, promo1, promo2, email, obj):
         y = int(input())
         if y == 1:
             print("Sorry for the inconvenience:")
-            print("""Your Order has been cancelled and if any amount is
-                  debited from your account, it'll be refunded within
-                  3 hours.""")
+            print("Your Order has been cancelled and if any amount is")
+            print("debited from your account, it'll be refunded within")
+            print("3 hours.")
 
             if promo1:
                 obj.update_promo1_to_0(email)
