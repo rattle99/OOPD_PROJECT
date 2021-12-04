@@ -77,6 +77,7 @@ if __name__ == "__main__":
                     x, y = order_input()
                     order_summary(x, y, fetch_kolkata)
                     time_avg, bill = avg_time_bill()
+                    print("Your ORDER:")
                     show_order()
                     while True:
                         Enter()
@@ -84,6 +85,7 @@ if __name__ == "__main__":
                         if button == 1:
                             x = int(input("Enter the INDEX of ITEM you want to remove:"))
                             delete_item(x)
+                            print("Your ORDER:")
                             show_order()
                             time_avg, bill = avg_time_bill()
 
@@ -91,6 +93,7 @@ if __name__ == "__main__":
                             res_obj.show_kolkata()
                             x, y = order_input()
                             order_summary(x, y, fetch_kolkata)
+                            print("Your ORDER:")
                             show_order()
                             time_avg, bill = avg_time_bill()
 
@@ -133,6 +136,7 @@ if __name__ == "__main__":
                     x, y = order_input()
                     order_summary(x, y, fetch_Haldiram)
                     time_avg, bill = avg_time_bill()
+                    print("Your ORDER:")
                     show_order()
                     while True:
                         Enter()
@@ -140,6 +144,7 @@ if __name__ == "__main__":
                         if button == 1:
                             x = int(input("Enter the INDEX of ITEM you want to remove:"))
                             delete_item(x)
+                            print("Your ORDER:")
                             show_order()
                             time_avg, bill = avg_time_bill()
 
@@ -147,6 +152,7 @@ if __name__ == "__main__":
                             res_obj.show_Haldiram()
                             x, y = order_input()
                             order_summary(x, y, fetch_Haldiram)
+                            print("Your ORDER:")
                             show_order()
                             time_avg, bill = avg_time_bill()
 
@@ -189,6 +195,7 @@ if __name__ == "__main__":
                     x, y = order_input()
                     order_summary(x, y, fetch_Bikaner)
                     time_avg, bill = avg_time_bill()
+                    print("Your ORDER:")
                     show_order()
                     while True:
                         Enter()
@@ -196,6 +203,7 @@ if __name__ == "__main__":
                         if button == 1:
                             x = int(input("Enter the INDEX of ITEM you want to remove:"))
                             delete_item(x)
+                            print("Your ORDER:")
                             show_order()
                             time_avg, bill = avg_time_bill()
 
@@ -203,6 +211,7 @@ if __name__ == "__main__":
                             res_obj.show_Bikaner()
                             x, y = order_input()
                             order_summary(x, y, fetch_Bikaner)
+                            print("Your ORDER:")
                             show_order()
                             time_avg, bill = avg_time_bill()
 
@@ -246,6 +255,7 @@ if __name__ == "__main__":
                     x, y = order_input()
                     order_summary(x, y, fetch_Mongini)
                     time_avg, bill = avg_time_bill()
+                    print("Your ORDER:")
                     show_order()
                     while True:
                         Enter()
@@ -253,6 +263,7 @@ if __name__ == "__main__":
                         if button == 1:
                             x = int(input("Enter the INDEX of ITEM you want to remove:"))
                             delete_item(x)
+                            print("Your ORDER:")
                             show_order()
                             time_avg, bill = avg_time_bill()
 
@@ -260,6 +271,7 @@ if __name__ == "__main__":
                             res_obj.show_Mongini()
                             x, y = order_input()
                             order_summary(x, y, fetch_Mongini)
+                            print("Your ORDER:")
                             show_order()
                             time_avg, bill = avg_time_bill()
 
@@ -304,6 +316,7 @@ if __name__ == "__main__":
                     x, y = order_input()
                     order_summary(x, y, fetch_Udupi)
                     time_avg, bill = avg_time_bill()
+                    print("Your ORDER:")
                     show_order()
                     while True:
                         Enter()
@@ -311,6 +324,7 @@ if __name__ == "__main__":
                         if button == 1:
                             x = int(input("Enter the INDEX of ITEM you want to remove:"))
                             delete_item(x)
+                            print("Your ORDER:")
                             show_order()
                             time_avg, bill = avg_time_bill()
 
@@ -318,6 +332,7 @@ if __name__ == "__main__":
                             res_obj.show_Udupi()
                             x, y = order_input()
                             order_summary(x, y, fetch_Udupi)
+                            print("Your ORDER:")
                             show_order()
                             time_avg, bill = avg_time_bill()
 
@@ -361,6 +376,7 @@ if __name__ == "__main__":
                     x, y = order_input()
                     order_summary(x, y, fetch_Om)
                     time_avg, bill = avg_time_bill()
+                    print("Your ORDER:")
                     show_order()
                     while True:
                         Enter()
@@ -368,6 +384,7 @@ if __name__ == "__main__":
                         if button == 1:
                             x = int(input("Enter the INDEX of ITEM you want to remove:"))
                             delete_item(x)
+                            print("Your ORDER:")
                             show_order()
                             time_avg, bill = avg_time_bill()
 
@@ -375,6 +392,7 @@ if __name__ == "__main__":
                             res_obj.show_Om()
                             x, y = order_input()
                             order_summary(x, y, fetch_Om)
+                            print("Your ORDER:")
                             show_order()
                             time_avg, bill = avg_time_bill()
 
