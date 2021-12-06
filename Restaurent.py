@@ -8,6 +8,9 @@ class Restaurant:
         pass
 
     def show_all(self):
+        """
+        Show all available restaurants.
+        """
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
         head = ['INDEX', 'RESTAURANT', 'LATITUDE', 'LONGITUDE']
@@ -25,9 +28,9 @@ class Restaurant:
             longi.append(l)
 
         table_data = list(zip(idx, rest, lati, longi))
-        table = tabulate(headers=head, tabular_data=table_data, tablefmt="github")
+        table = tabulate(
+            headers=head, tabular_data=table_data, tablefmt="github")
         print(table)
-
 
         conn.commit()
         conn.close()
@@ -62,7 +65,6 @@ class Restaurant:
         table_data = list(zip(idx, menu, price, ti))
         table = tabulate(headers=head, tabular_data=table_data, tablefmt="rst")
         print(table)
-
 
         conn.commit()
         conn.close()
