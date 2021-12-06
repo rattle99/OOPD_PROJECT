@@ -93,7 +93,8 @@ class Order:
     def Add(self, name, quantity, price, time):
         conn = sqlite3.connect('Orders.db')
         c = conn.cursor()
-        c.execute("INSERT INTO Final_Order VALUES (?,?,?,?)", (name, quantity, price, time))
+        c.execute("INSERT INTO Final_Order VALUES (?,?,?,?)",
+                  (name, quantity, price, time))
 
         conn.commit()
 

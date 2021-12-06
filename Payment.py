@@ -8,7 +8,8 @@ class Payment:
         print(f"Delivery Charges: Rs. {delivery_charge}")
         print(f"Bill Amount to be paid by the USER: Rs. {bill} ")
         print(f"Estimated time for Preparing the food: {time_avg} minutes")
-        print(f"Approaximate time taken by delivery executive: {delivery_time} minutes")
+        print(
+            f"Approaximate time taken by delivery executive: {delivery_time} minutes")
         total_time = time_avg + delivery_time
         total_amount = bill + delivery_charge
         print(f"Estimated time for Delivery: {total_time} minutes ")
@@ -97,6 +98,4 @@ class Payment:
         elif pay == 5:
             self.COD(total)
 
-
         return self.promo1_used, self.promo2_used, self.flag_1
-

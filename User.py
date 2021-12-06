@@ -19,10 +19,6 @@ class User:
 
         return self.name, self.surname, self.email, self.password, self.lat, self.lon
 
-
-
-
-
     def add_one(self, first, last, email, password, latitude, longitude, promo1=0, promo2=0):
         conn = sqlite3.connect('User.db')
         c = conn.cursor()
@@ -94,7 +90,8 @@ class Promocode(User):
         conn = sqlite3.connect('User.db')
         c = conn.cursor()
 
-        c.execute("""UPDATE users SET promocode_1 = 1 WHERE email = (?)""", (email,))
+        c.execute(
+            """UPDATE users SET promocode_1 = 1 WHERE email = (?)""", (email,))
 
         conn.commit()
         conn.close()
@@ -103,7 +100,8 @@ class Promocode(User):
         conn = sqlite3.connect('User.db')
         c = conn.cursor()
 
-        c.execute("""UPDATE users SET promocode_1 = 0 WHERE email = (?)""", (email,))
+        c.execute(
+            """UPDATE users SET promocode_1 = 0 WHERE email = (?)""", (email,))
 
         conn.commit()
         conn.close()
@@ -112,7 +110,8 @@ class Promocode(User):
         conn = sqlite3.connect('User.db')
         c = conn.cursor()
 
-        c.execute("""UPDATE users SET promocode_2 = 1 WHERE email = (?)""", (email,))
+        c.execute(
+            """UPDATE users SET promocode_2 = 1 WHERE email = (?)""", (email,))
 
         conn.commit()
         conn.close()
@@ -121,7 +120,8 @@ class Promocode(User):
         conn = sqlite3.connect('User.db')
         c = conn.cursor()
 
-        c.execute("""UPDATE users SET promocode_2 = 0 WHERE email = (?)""", (email,))
+        c.execute(
+            """UPDATE users SET promocode_2 = 0 WHERE email = (?)""", (email,))
 
         conn.commit()
         conn.close()
@@ -141,5 +141,3 @@ class Promocode(User):
         c.execute("SELECT rowid, * FROM users WHERE email = (?)", (email,))
         self.items = c.fetchall()
         return self.items[0][8]
-
-

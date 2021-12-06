@@ -1,6 +1,7 @@
 import sqlite3
 from tabulate import tabulate
 
+
 class Wishlist:
 
     def __init__(self):
@@ -70,10 +71,3 @@ class Wishlist:
 
         conn.commit()
         conn.close()
-
-
-
-
-
-
-

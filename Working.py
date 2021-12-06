@@ -10,7 +10,6 @@ class Working:
                     track_obj, obj2, delivery_charge,
                     delivery_time, count, dist, email, res_name):
 
-
         if res_name == "KOLKATA KATHI ROLLS":
             res_obj.show_kolkata()
             order_obj.create_table()
@@ -38,28 +37,29 @@ class Working:
                     order_obj.show_order()
                     time_avg, bill = order_obj.avg_time_bill()
 
-
                 elif button == 3:
                     time_avg, bill = order_obj.avg_time_bill()
                     if bill < 100:
                         print("----------------------------")
-                        print("The Minimum Cart Value should not be less than 100 rupees!!")
+                        print(
+                            "The Minimum Cart Value should not be less than 100 rupees!!")
                         print("Please add more items:")
                         print("----------------------------")
                     else:
                         order_obj.drop_table()
-                        pay_obj.payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
-                        promo1, promo2, self.flag_1 = pay_obj.payment_final(delivery_charge, bill, email, obj2)
-                        track_obj.tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
+                        pay_obj.payment_process(
+                            dist, delivery_charge, bill, time_avg, delivery_time)
+                        promo1, promo2, self.flag_1 = pay_obj.payment_final(
+                            delivery_charge, bill, email, obj2)
+                        track_obj.tracking(
+                            time_avg, delivery_time, promo1, promo2, email, obj2)
                         break
-
 
                 elif button == 4:
                     self.flag = 1
                     order_obj.drop_table()
                     print("Discarding the Order")
                     break
-
 
                 elif button == 5:
                     self.flag_wishlist = 1
@@ -98,20 +98,23 @@ class Working:
                     order_obj.show_order()
                     time_avg, bill = order_obj.avg_time_bill()
 
-
                 elif button == 3:
                     time_avg, bill = order_obj.avg_time_bill()
                     if bill < 100:
                         print("----------------------------")
-                        print("The Minimum Cart Value should not be less than 100 rupees!!")
+                        print(
+                            "The Minimum Cart Value should not be less than 100 rupees!!")
                         print("Please add more items:")
                         print("----------------------------")
                     else:
 
                         order_obj.drop_table()
-                        pay_obj.payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
-                        promo1, promo2, self.flag_1 = pay_obj.payment_final(delivery_charge, bill, email, obj2)
-                        track_obj.tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
+                        pay_obj.payment_process(
+                            dist, delivery_charge, bill, time_avg, delivery_time)
+                        promo1, promo2, self.flag_1 = pay_obj.payment_final(
+                            delivery_charge, bill, email, obj2)
+                        track_obj.tracking(
+                            time_avg, delivery_time, promo1, promo2, email, obj2)
 
                         break
 
@@ -158,30 +161,30 @@ class Working:
                     order_obj.show_order()
                     time_avg, bill = order_obj.avg_time_bill()
 
-
                 elif button == 3:
                     time_avg, bill = order_obj.avg_time_bill()
                     if bill < 100:
                         print("----------------------------")
-                        print("The Minimum Cart Value should not be less than 100 rupees!!")
+                        print(
+                            "The Minimum Cart Value should not be less than 100 rupees!!")
                         print("Please add more items:")
                         print("----------------------------")
                     else:
 
                         order_obj.drop_table()
-                        pay_obj.payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
-                        promo1, promo2, self.flag_1 = pay_obj.payment_final(delivery_charge, bill, email, obj2)
-                        track_obj.tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
+                        pay_obj.payment_process(
+                            dist, delivery_charge, bill, time_avg, delivery_time)
+                        promo1, promo2, self.flag_1 = pay_obj.payment_final(
+                            delivery_charge, bill, email, obj2)
+                        track_obj.tracking(
+                            time_avg, delivery_time, promo1, promo2, email, obj2)
                         break
-
 
                 elif button == 4:
                     self.flag = 1
                     order_obj.drop_table()
                     print("Discarding the Order")
                     break
-
-
 
                 elif button == 5:
                     self.flag_wishlist = 1
@@ -220,29 +223,30 @@ class Working:
                     order_obj.show_order()
                     time_avg, bill = order_obj.avg_time_bill()
 
-
                 elif button == 3:
                     time_avg, bill = order_obj.avg_time_bill()
                     if bill < 100:
                         print("----------------------------")
-                        print("The Minimum Cart Value should not be less than 100 rupees!!")
+                        print(
+                            "The Minimum Cart Value should not be less than 100 rupees!!")
                         print("Please add more items:")
                         print("----------------------------")
                     else:
 
                         order_obj.drop_table()
-                        pay_obj.payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
-                        promo1, promo2, self.flag_1 = pay_obj.payment_final(delivery_charge, bill, email, obj2)
-                        track_obj.tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
+                        pay_obj.payment_process(
+                            dist, delivery_charge, bill, time_avg, delivery_time)
+                        promo1, promo2, self.flag_1 = pay_obj.payment_final(
+                            delivery_charge, bill, email, obj2)
+                        track_obj.tracking(
+                            time_avg, delivery_time, promo1, promo2, email, obj2)
                         break
-
 
                 elif button == 4:
                     self.flag = 1
                     order_obj.drop_table()
                     print("Discarding the Order")
                     break
-
 
                 elif button == 5:
                     self.flag_wishlist = 1
@@ -281,29 +285,30 @@ class Working:
                     order_obj.show_order()
                     time_avg, bill = order_obj.avg_time_bill()
 
-
                 elif button == 3:
                     time_avg, bill = order_obj.avg_time_bill()
                     if bill < 100:
                         print("----------------------------")
-                        print("The Minimum Cart Value should not be less than 100 rupees!!")
+                        print(
+                            "The Minimum Cart Value should not be less than 100 rupees!!")
                         print("Please add more items:")
                         print("----------------------------")
                     else:
 
                         order_obj.drop_table()
-                        pay_obj.payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
-                        promo1, promo2, self.flag_1 = pay_obj.payment_final(delivery_charge, bill, email, obj2)
-                        track_obj.tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
+                        pay_obj.payment_process(
+                            dist, delivery_charge, bill, time_avg, delivery_time)
+                        promo1, promo2, self.flag_1 = pay_obj.payment_final(
+                            delivery_charge, bill, email, obj2)
+                        track_obj.tracking(
+                            time_avg, delivery_time, promo1, promo2, email, obj2)
                         break
-
 
                 elif button == 4:
                     self.flag = 1
                     order_obj.drop_table()
                     print("Discarding the Order")
                     break
-
 
                 elif button == 5:
                     self.flag_wishlist = 1
@@ -343,19 +348,22 @@ class Working:
                     order_obj.show_order()
                     time_avg, bill = order_obj.avg_time_bill()
 
-
                 elif button == 3:
                     time_avg, bill = order_obj.avg_time_bill()
                     if bill < 100:
                         print("----------------------------")
-                        print("The Minimum Cart Value should not be less than 100 rupees!!")
+                        print(
+                            "The Minimum Cart Value should not be less than 100 rupees!!")
                         print("Please add more items:")
                         print("----------------------------")
                     else:
                         order_obj.drop_table()
-                        pay_obj.payment_process(dist, delivery_charge, bill, time_avg, delivery_time)
-                        promo1, promo2, self.flag_1 = pay_obj.payment_final(delivery_charge, bill, email, obj2)
-                        track_obj.tracking(time_avg, delivery_time, promo1, promo2, email, obj2)
+                        pay_obj.payment_process(
+                            dist, delivery_charge, bill, time_avg, delivery_time)
+                        promo1, promo2, self.flag_1 = pay_obj.payment_final(
+                            delivery_charge, bill, email, obj2)
+                        track_obj.tracking(
+                            time_avg, delivery_time, promo1, promo2, email, obj2)
                         break
 
                 elif button == 4:
