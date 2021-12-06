@@ -6,6 +6,23 @@ class User:
     def __init__(self):
         pass
 
+    def User_Registration(self):
+
+        print("Welcome to the REGISTRATION PORTAL:")
+        self.name = input("Enter your NAME: ")
+        self.surname = input("Enter your SURNAME: ")
+        self.email = input("Enter your EMAIL-ID: ")
+        self.password = input("Enter your PASSWORD: ")
+        print("Enter your location using GOOGLE MAPS:")
+        self.lat = input("Enter LATITUDE: ")
+        self.lon = input("Enter LONGITUDE: ")
+
+        return self.name, self.surname, self.email, self.password, self.lat, self.lon
+
+
+
+
+
     def add_one(self, first, last, email, password, latitude, longitude, promo1=0, promo2=0):
         conn = sqlite3.connect('User.db')
         c = conn.cursor()
@@ -13,6 +30,22 @@ class User:
                   (first, last, email, password, latitude, longitude, promo1, promo2))
         conn.commit()
         conn.close()
+
+    def User_Verification(self, email):
+        conn = sqlite3.connect('User.db')
+        c = conn.cursor()
+
+        df = pd.read_sql("SELECT * FROM users", conn)
+
+        conn.commit()
+        # Close our Connection
+        conn.close()
+        email_li = df["email"].tolist()
+
+        if email in email_li:
+            return True
+
+        return False
 
     def User_Authentciation(self, email, password):
         conn = sqlite3.connect('User.db')
@@ -31,6 +64,7 @@ class User:
             pas = password_li[e]
             if password == pas:
                 return True
+
         return False
 
     def lat_lon_user(self, email):
