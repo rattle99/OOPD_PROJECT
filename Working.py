@@ -1,4 +1,6 @@
 class Working:
+    """Class for creation and handling order execution.
+    """
 
     def __init__(self):
         self.flag = 0
@@ -9,6 +11,25 @@ class Working:
     def worker_func(self, pay_obj, res_obj, order_obj, wish_obj,
                     track_obj, obj2, delivery_charge,
                     delivery_time, count, dist, email, res_name):
+        """Create and execute order.
+
+        Args:
+            pay_obj ([type]): [description]
+            res_obj (object): Object of class restaurant
+            order_obj (object): Object of class Order
+            wish_obj (object): Object of class Wishlist
+            track_obj (object): Object of class Track_Order
+            obj2 ([type]): [description]
+            delivery_charge (int): Delivery charge in INR
+            delivery_time (int): Delivery time in minutes
+            count (int): [description]
+            dist ([type]): [description]
+            email (str): User email
+            res_name (str): Restaurant name
+
+        Returns:
+            [type]: [description]
+        """
 
         if res_name == "KOLKATA KATHI ROLLS":
             res_obj.show_kolkata()

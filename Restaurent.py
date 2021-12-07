@@ -8,9 +8,9 @@ class Restaurant:
         pass
 
     def show_all(self):
+        """Show all available restaurants.
         """
-        Show all available restaurants.
-        """
+
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
         head = ['INDEX', 'RESTAURANT', 'LATITUDE', 'LONGITUDE']
@@ -36,6 +36,15 @@ class Restaurant:
         conn.close()
 
     def read_one(self, x):
+        """Get restaurants by rowid.
+
+        Args:
+            x (int): rowid
+
+        Returns:
+            str: Name, latitude, longitude
+        """
+
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
 
@@ -45,6 +54,9 @@ class Restaurant:
         return x[1], x[2], x[3]
 
     def show_kolkata(self):
+        """Display menu for KOLKATA KATHI ROLLS.
+        """
+
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
 
@@ -70,6 +82,9 @@ class Restaurant:
         conn.close()
 
     def show_Haldiram(self):
+        """Display menu for HALDIRAMS.
+        """
+
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
 
@@ -94,6 +109,9 @@ class Restaurant:
         conn.close()
 
     def show_Bikaner(self):
+        """Display menu for BIKANERWALA.
+        """
+
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
 
@@ -119,6 +137,9 @@ class Restaurant:
         conn.close()
 
     def show_Mongini(self):
+        """Display menu for MONGINI-BAKERY.
+        """
+
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
 
@@ -143,6 +164,9 @@ class Restaurant:
         conn.close()
 
     def show_Udupi(self):
+        """Display menu for UDUPI.
+        """
+
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
 
@@ -168,6 +192,9 @@ class Restaurant:
         conn.close()
 
     def show_Om(self):
+        """Display menu for OM-SWEETS.
+        """
+
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
 
