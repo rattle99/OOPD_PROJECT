@@ -3,6 +3,8 @@ from tabulate import tabulate
 
 
 class Restaurant:
+    """Class for fetching restaurant data
+    """
 
     def __init__(self):
         pass

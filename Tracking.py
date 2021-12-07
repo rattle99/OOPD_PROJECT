@@ -1,4 +1,6 @@
 class Track_Order:
+    """Class for order tracking functions
+    """
 
     def __init__(self):
         pass
