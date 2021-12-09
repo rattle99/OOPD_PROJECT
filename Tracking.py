@@ -1,9 +1,14 @@
 class Track_Order:
+    """Class for order tracking functions
+    """
 
     def __init__(self):
         pass
 
     def rate(self):
+        """Rate order.
+        """
+
         x = int(input("On the Scale of 5 Please rate the FOOD and APP SERVICE: "))
         if x == 1 or x == 2:
             print("We are really sorry for the your Unpleasing Experience")
@@ -13,6 +18,17 @@ class Track_Order:
             print("Thats Great!!, Hope to see you again.")
 
     def tracking(self, time_avg, delivery_time, promo1, promo2, email, obj):
+        """Track order delivery.
+
+        Args:
+            time_avg (int): Time of order
+            delivery_time (int): Delivery time
+            promo1 (int): 1 or 0
+            promo2 (int): 1 or 0
+            email (str): User email
+            obj ([type]): [description]
+        """
+
         x = int(input("Enter the time elasped (in minutes): "))
         z = time_avg + delivery_time
         if x > (1.1 * z):

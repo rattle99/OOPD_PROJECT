@@ -3,11 +3,23 @@ from tabulate import tabulate
 
 
 class Order:
+    """Class to create and save orders.
+    """
 
     def __init__(self):
         pass
 
     def fetch_kolkata(self, row):
+        """Get menu item for restaurant KOLKATA KATHI ROLLS
+
+        Args:
+            row (int): row ID
+
+        Returns:
+            str: Menu item
+            int: Price of item in INR
+            int: Time taken in minutes
+        """
 
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
@@ -17,6 +29,16 @@ class Order:
         return self.x[1], self.x[2], self.x[3]
 
     def fetch_Haldiram(self, row):
+        """Get menu item for restaurant HALDIRAMS
+
+        Args:
+            row (int): row ID
+
+        Returns:
+            str: Menu item
+            int: Price of item in INR
+            int: Time taken in minutes
+        """
 
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
@@ -26,6 +48,16 @@ class Order:
         return self.x[1], self.x[2], self.x[3]
 
     def fetch_Bikaner(self, row):
+        """Get menu item for restaurant BIKANERWALA
+
+        Args:
+            row (int): row ID
+
+        Returns:
+            str: Menu item
+            int: Price of item in INR
+            int: Time taken in minutes
+        """
 
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
@@ -35,6 +67,16 @@ class Order:
         return self.x[1], self.x[2], self.x[3]
 
     def fetch_Mongini(self, row):
+        """Get menu item for restaurant MONGINI-BAKERY
+
+        Args:
+            row (int): row ID
+
+        Returns:
+            str: Menu item
+            int: Price of item in INR
+            int: Time taken in minutes
+        """
 
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
@@ -44,6 +86,16 @@ class Order:
         return self.x[1], self.x[2], self.x[3]
 
     def fetch_Udupi(self, row):
+        """Get menu item for restaurant UDUPI
+
+        Args:
+            row (int): row ID
+
+        Returns:
+            str: Menu item
+            int: Price of item in INR
+            int: Time taken in minutes
+        """
 
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
@@ -53,6 +105,16 @@ class Order:
         return self.x[1], self.x[2], self.x[3]
 
     def fetch_Om(self, row):
+        """Get menu item for restaurant OM-SWEETS
+
+        Args:
+            row (int): row ID
+
+        Returns:
+            str: Menu item
+            int: Price of item in INR
+            int: Time taken in minutes
+        """
 
         conn = sqlite3.connect('Restaurents.db')
         c = conn.cursor()
@@ -62,6 +124,12 @@ class Order:
         return self.x[1], self.x[2], self.x[3]
 
     def order_input(self):
+        """Save items to order
+
+        Returns:
+            list: List of menu items
+        """
+
         print("Enter the Index of Item and the Quantity you want to order:")
         print("Enter 0 if you completed your cart:")
         x = list()
@@ -79,6 +147,9 @@ class Order:
         return self.index_li, self.quantity_li
 
     def create_table(self):
+        """Create table for orders
+        """
+
         conn = sqlite3.connect('Orders.db')
         c = conn.cursor()
         c.execute(""" CREATE TABLE Final_Order (
@@ -91,15 +162,28 @@ class Order:
         conn.close()
 
     def Add(self, name, quantity, price, time):
+        """Add item to table Final_Order
+
+        Args:
+            name (str): Menu item
+            quantity (int): Quantity
+            price (int): Price of item in INR
+            time (int): Time taken in minutes
+        """
+
         conn = sqlite3.connect('Orders.db')
         c = conn.cursor()
-        c.execute("INSERT INTO Final_Order VALUES (?,?,?,?)", (name, quantity, price, time))
+        c.execute("INSERT INTO Final_Order VALUES (?,?,?,?)",
+                  (name, quantity, price, time))
 
         conn.commit()
 
         conn.close()
 
     def drop_table(self):
+        """Delete table for Final_Order
+        """
+
         conn = sqlite3.connect('Orders.db')
         c = conn.cursor()
         c.execute("DROP TABLE Final_Order")
@@ -107,6 +191,9 @@ class Order:
         conn.close()
 
     def show_order(self):
+        """Show items from table Final_Order
+        """
+
         conn = sqlite3.connect('Orders.db')
         c = conn.cursor()
 
@@ -132,6 +219,14 @@ class Order:
         conn.close()
 
     def order_summary(self, x, y, func):
+        """Create order summary
+
+        Args:
+            x (list): [description]
+            y (list): [description]
+            func (fucntion): [description]
+        """
+
         for i in range(len(x)):
             mock_price = 0
             name, pri, time = func(x[i])
@@ -139,6 +234,13 @@ class Order:
             self.Add(name, y[i], mock_price, time)
 
     def avg_time_bill(self):
+        """Get time required for current order
+
+        Returns:
+            int: Time in minutes
+            int: Price in INR
+        """
+
         conn = sqlite3.connect('Orders.db')
         c = conn.cursor()
 
@@ -156,6 +258,12 @@ class Order:
         return self.time_required, self.bill_price
 
     def delete_item(self, row):
+        """Delete item by rowid
+
+        Args:
+            row (int): row ID
+        """
+
         conn = sqlite3.connect('Orders.db')
         c = conn.cursor()
         c.execute("DELETE from Final_Order WHERE rowid = (?)", (row,))
@@ -163,6 +271,9 @@ class Order:
         conn.close()
 
     def Enter(self):
+        """Print user options for ordering
+        """
+
         print("Select '1' if you want to Delete any Item:")
         print("Select '2' if you want to Add any Item:")
         print("Select '3' if you want to Proceed Forward for the Payment:")

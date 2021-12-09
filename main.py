@@ -78,9 +78,8 @@ if __name__ == "__main__":
 
                 # Object of Working Class:
                 work_obj = Working.Working()
-                flag, flag_1, flag_wishlist = work_obj.worker_func(pay_obj, res_obj, order_obj, wish_obj,track_obj, obj2,
-                                                                   delivery_charge,delivery_time, count, dist, email, res_name)
-
+                flag, flag_1, flag_wishlist = work_obj.worker_func(pay_obj, res_obj, order_obj, wish_obj, track_obj, obj2,
+                                                                   delivery_charge, delivery_time, count, dist, email, res_name)
 
                 if flag == 1 or flag_1 == 1:
                     if flag_wishlist == 1:
@@ -90,18 +89,14 @@ if __name__ == "__main__":
                     print("----------------------------")
                     break
 
-
             else:
                 print("----------------------------")
                 print("The User is not Registered!")
                 print("----------------------------")
                 break
 
-
-
         else:
             print("----------------------------")
             print("WRONG INPUT!!")
             print("----------------------------")
             break
-
